@@ -303,15 +303,15 @@ function addManager() {
     managerhtml += `
     <div class="card" style="width: 18rem;">
   <div class="card-body" id="blueSec">
-    <h5 class="card-title">${newEmployee.name} title</h5>
+    <h5 class="card-title">${newEmployee.name} </h5>
     <p class="card-text">${newEmployee.getRole()}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">${newEmployee.id}</li>
-    <li class="list-group-item">${newEmployee.officeNumber}</li>
+    <li class="list-group-item">ID: ${newEmployee.id}</li>
+    <li class="list-group-item">Office #: ${newEmployee.officeNumber}</li>
   </ul>
   <div class="card-body">
-    <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
+   Email: <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
   </div>
 </div>
     `
@@ -326,16 +326,15 @@ function addEngineer() {
     engineerhtml += `
     <div class="card border border-primary" style="width: 18rem;">
   <div class="card-body" id="blueSec">
-    <h5 class="card-title">${newEmployee.name} title</h5>
+    <h5 class="card-title">${newEmployee.name} </h5>
     <p class="card-text">${newEmployee.getRole()}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">${newEmployee.id}</li>
-    <li class="list-group-item">${newEmployee.githubUser}</li>
+    <li class="list-group-item">ID: ${newEmployee.id}</li>
+    <li class="list-group-item">Github: <a href="https://github.com/${newEmployee.githubUser}" class="card-link">${newEmployee.githubUser}</a></li>
   </ul>
   <div class="card-body">
-    <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
-    <a href="https://github.com/${newEmployee.githubUser}" class="card-link">${newEmployee.githubUser}</a>
+    Email: <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
   </div>
 </div>
     `
@@ -346,19 +345,19 @@ function addEngineer() {
 function addInter() {
   inquirer.prompt(InternQuestions)
   .then(response => {
-    const newEmployee = new Intern(response.InterName, response.InternId, response.InternEmail, response.school)
+    const newEmployee = new Intern(response.InternName, response.InternId, response.InternEmail, response.school)
     internhtml += `
     <div class="card border border-primary" style="width: 18rem;">
   <div class="card-body" id="blueSec">
-    <h5 class="card-title">${newEmployee.name} title</h5>
+    <h5 class="card-title">${newEmployee.name} </h5>
     <p class="card-text">${newEmployee.getRole()}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">${newEmployee.id}</li>
-    <li class="list-group-item">${newEmployee.school}</li>
+    <li class="list-group-item">ID: ${newEmployee.id}</li>
+    <li class="list-group-item">School: ${newEmployee.school}</li>
   </ul>
   <div class="card-body">
-    <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
+   Email: <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
   </div>
 </div>
     `
