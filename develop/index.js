@@ -4,7 +4,7 @@ const writeFile = require('./utils/generate');
 const Manager = require("./library/Manager");
 const Intern = require("./library/Intern");
 const Engineer = require("./library/Engineer");
-
+const fs = require('fs');
 // TODO: Create an array of questions for user input
 // const promptUser = userData => {
 //     return inquirer.prompt([
@@ -197,59 +197,77 @@ let managerQuestion = [
 
 
 
-promptUser()
-  .then(data => {
-    console.log(data);
+// promptUser()
+//   .then(data => 
+    function exit()
+    {
+    
     const contentFile = `
         <!DOCTYPE html>
         <html lang="en">
           <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" href="./utils/style.css">
+            <!-- CSS only -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="./dist/style.css">
             <title>Team Page</title>
           </head>
         
           <body>
             <!-- header -->
-            <header>
-              <h1>
-                My Team
-              </h1>
-            </header>
             
-            <div>
-              <h2>
-                ${data.team}
-              </h2>
-              <h3>
-                Manager
-              </h3>
-              <ul>
-                <li>${data.teamId}</li>
-                <li>${data.teamEmail}</li>
-                <li>${data.office}</li>
-            <ul>
-                
+            <header class="text-center p-3">
+            <h1>My Team</h1>
+            </header>
+            <div class="container text-center">
+
+            <div class="row">
+            <div class="col-12">
+            <h3>Manager</h3>
+            ${managerhtml}
             </div>
-              
+            </div>
+          
+
+          <div class="row">
+            <div class="col-12">
+            <h3>Intern</h3>
+            ${internhtml}
+            </div>
+            </div>
+         
+
+          <div class="row">
+            <div class="col-12">
+            <h3>Engineer</h3>
+            ${engineerhtml}
+            </div>
+            </div>
+          </div>
+          </div>
           </body>
         </html>
 
         `
-    return contentFile;
-  })
-  .then(pageHTML => {
-    console.log(pageHTML);
-    return writeFile(pageHTML);
-  })
-  .then(writeFileResponse => {
-    console.log(writeFileResponse);
+    console.log(contentFile);
+    fs.writeFileSync('index.html', contentFile, function(err) {
+      if (err)
+      throw err;
+    })
 
-  })
-  .catch(err => {
-    console.log(err);
-  });
+  }
+  // .then(pageHTML => {
+  //   console.log(pageHTML);
+  //   return writeFile(pageHTML);
+  // })
+  // .then(writeFileResponse => {
+  //   console.log(writeFileResponse);
+
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  // });
 
 
 function init() {
@@ -284,7 +302,7 @@ function addManager() {
     const newEmployee = new Manager(response.manager, response.managerId, response.managerEmail, response.office)
     managerhtml += `
     <div class="card" style="width: 18rem;">
-  <div class="card-body">
+  <div class="card-body" id="blueSec">
     <h5 class="card-title">${newEmployee.name} title</h5>
     <p class="card-text">${newEmployee.getRole()}</p>
   </div>
@@ -297,6 +315,7 @@ function addManager() {
   </div>
 </div>
     `
+    init()
   })
 }
 
@@ -305,31 +324,32 @@ function addEngineer() {
   .then(response => {
     const newEmployee = new Engineer(response.EngineerName, response.teamId, response.teamEmail, response.github)
     engineerhtml += `
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
+    <div class="card border border-primary" style="width: 18rem;">
+  <div class="card-body" id="blueSec">
     <h5 class="card-title">${newEmployee.name} title</h5>
     <p class="card-text">${newEmployee.getRole()}</p>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">${newEmployee.id}</li>
-    <li class="list-group-item">${newEmployee.github}</li>
+    <li class="list-group-item">${newEmployee.githubUser}</li>
   </ul>
   <div class="card-body">
     <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
-    <a href="https://github.com/${newEmployee.github}" class="card-link">${newEmployee.github}</a>
+    <a href="https://github.com/${newEmployee.githubUser}" class="card-link">${newEmployee.githubUser}</a>
   </div>
 </div>
     `
+    init()
   })
 }
 
 function addInter() {
   inquirer.prompt(InternQuestions)
   .then(response => {
-    const newEmployee = new Inter(response.InterName, response.InternId, response.InternEmail, response.school)
+    const newEmployee = new Intern(response.InterName, response.InternId, response.InternEmail, response.school)
     internhtml += `
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
+    <div class="card border border-primary" style="width: 18rem;">
+  <div class="card-body" id="blueSec">
     <h5 class="card-title">${newEmployee.name} title</h5>
     <p class="card-text">${newEmployee.getRole()}</p>
   </div>
@@ -342,5 +362,9 @@ function addInter() {
   </div>
 </div>
     `
+    init()
   })
 }
+
+
+init()
