@@ -311,7 +311,7 @@ function addManager() {
     <li class="list-group-item">Office #: ${newEmployee.officeNumber}</li>
   </ul>
   <div class="card-body">
-   Email: <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
+   Email: <a href="mailto:${newEmployee.email}" target="_blank" rel="noopener noreferrer" class="card-link">${newEmployee.email}</a>
   </div>
 </div>
     `
@@ -331,10 +331,10 @@ function addEngineer() {
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">ID: ${newEmployee.id}</li>
-    <li class="list-group-item">Github: <a href="https://github.com/${newEmployee.githubUser}" class="card-link">${newEmployee.githubUser}</a></li>
+    <li class="list-group-item">Github: <a href="https://github.com/${newEmployee.githubUser}" target="_blank" rel="noopener noreferrer" class="card-link">${newEmployee.githubUser}</a></li>
   </ul>
   <div class="card-body">
-    Email: <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
+    Email: <a href="mailto:${newEmployee.email}" target="_blank" rel="noopener noreferrer" class="card-link">${newEmployee.email}</a>
   </div>
 </div>
     `
@@ -357,7 +357,7 @@ function addInter() {
     <li class="list-group-item">School: ${newEmployee.school}</li>
   </ul>
   <div class="card-body">
-   Email: <a href="mailto:${newEmployee.email}" class="card-link">${newEmployee.email}</a>
+   Email: <a href="mailto:${newEmployee.email}" target="_blank" rel="noopener noreferrer" class="card-link">${newEmployee.email}</a>
   </div>
 </div>
     `
