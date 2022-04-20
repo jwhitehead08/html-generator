@@ -1,16 +1,16 @@
-// TODO: Include packages needed for this application
+// packages for this application
 const inquirer = require('inquirer');
 const writeFile = require('./utils/generate');
 const Manager = require("./library/Manager");
 const Intern = require("./library/Intern");
 const Engineer = require("./library/Engineer");
 const fs = require('fs');
-// TODO: Create an array of questions for user input
-// const promptUser = userData => {
-//     return inquirer.prompt([
+
 let managerhtml = ""
 let internhtml = ""
 let engineerhtml = ""  
+
+// Manager questions
 let managerQuestion = [
   {
     type: 'input',
@@ -66,13 +66,7 @@ let managerQuestion = [
   }
 ]
 
-
-// // Engineer 
-// if (!portfolioData.projects) {
-//   portfolioData.projects = [];
-// }
-// return inquirer
-//   .prompt([
+// Engineer Questions
   let enginneerQuestions = [
     {
       type: 'input',
@@ -128,6 +122,7 @@ let managerQuestion = [
     }
   ]
 
+  //Intern Questions
   let InternQuestions = [
     {
       type: 'input',
@@ -184,21 +179,7 @@ let managerQuestion = [
   ]
 
 
-//   ])
-//   .then(projectData => {
-//     portfolioData.projects.push(projectData);
-//     if (projectData.confirmAddProject) {
-//       return promptProject(portfolioData);
-//     } else {
-//       return portfolioData;
-//     }
-//   });
-// };
-
-
-
-// promptUser()
-//   .then(data => 
+// Exit function
     function exit()
     {
     
@@ -269,7 +250,7 @@ let managerQuestion = [
   //   console.log(err);
   // });
 
-
+// function to prompt user
 function init() {
   inquirer.prompt([
     {
@@ -319,6 +300,7 @@ function addManager() {
   })
 }
 
+// function for adding engineer
 function addEngineer() {
   inquirer.prompt(enginneerQuestions)
   .then(response => {
@@ -342,6 +324,7 @@ function addEngineer() {
   })
 }
 
+// function for adding intern
 function addInter() {
   inquirer.prompt(InternQuestions)
   .then(response => {
